@@ -634,11 +634,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj",
+      "projectUniqueName": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj",
       "projectName": "CitraDigitalAndroid",
-      "projectPath": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj",
+      "projectPath": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj",
       "packagesPath": "C:\\Users\\Error10\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\obj\\",
+      "outputPath": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

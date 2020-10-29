@@ -1936,11 +1936,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\CitraDigitalAndroid.Android.csproj",
+      "projectUniqueName": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\CitraDigitalAndroid.Android.csproj",
       "projectName": "CitraDigitalAndroid.Android",
-      "projectPath": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\CitraDigitalAndroid.Android.csproj",
+      "projectPath": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\CitraDigitalAndroid.Android.csproj",
       "packagesPath": "C:\\Users\\Error10\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\obj\\",
+      "outputPath": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1961,8 +1961,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj": {
-              "projectPath": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj"
+            "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj": {
+              "projectPath": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj"
             }
           }
         }

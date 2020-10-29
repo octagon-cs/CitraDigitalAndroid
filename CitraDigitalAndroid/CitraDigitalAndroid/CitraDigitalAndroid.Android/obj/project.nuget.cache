@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JqX3OvPOrcvbgNzHOUjaLLFfLG46LoYLcF8J2F9mp47Z9nKwWOkmEC3X2sD+eg9uU/16czllA5gEctPUkfcX/Q==",
+  "dgSpecHash": "9kHuG1YcVvV/fQpJGe046Q7BjFO1dhe/HPRVH0oOswV8EDJFUtJqY2mE9MgQKQeaJr+fs9AGazOdshdB/hL4cg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\CitraDigitalAndroid.Android.csproj",
+  "projectFilePath": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.Android\\CitraDigitalAndroid.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Error10\\.nuget\\packages\\xamarin.android.arch.core.common\\1.1.1.3\\xamarin.android.arch.core.common.1.1.1.3.nupkg.sha512",
     "C:\\Users\\Error10\\.nuget\\packages\\xamarin.android.arch.core.runtime\\1.1.1.3\\xamarin.android.arch.core.runtime.1.1.1.3.nupkg.sha512",

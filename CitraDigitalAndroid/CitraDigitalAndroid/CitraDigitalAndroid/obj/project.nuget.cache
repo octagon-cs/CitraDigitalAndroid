@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ulr0gN/Un4d0QfXwKwAUroMkSYNN2t4hC2ledUKJi0GIeYjdx+6tTxI/NIaQ5W2HavZU1ejt+AuP7pVQWPRJgg==",
+  "dgSpecHash": "Jsm4t0RkqdAhpXjntDBEUp4NhKwklMdCXJj5a3crSSeoh0KTOsunXkzuVODi3po9VURteOCKM81BwRKMHG5nwA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Error10\\source\\repos\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj",
+  "projectFilePath": "C:\\octagon\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid\\CitraDigitalAndroid.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",

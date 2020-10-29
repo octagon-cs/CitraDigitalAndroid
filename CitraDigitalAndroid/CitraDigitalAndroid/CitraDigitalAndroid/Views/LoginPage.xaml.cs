@@ -17,5 +17,10 @@ namespace CitraDigitalAndroid.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CitraDigitalAndroid.Views.DetailTruckPage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#00ACAC">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="70*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+
+            </StackLayout>
+
+            <Grid Grid.Row="1">
+                <Frame BackgroundColor="#F5F3F3" HeightRequest="100" CornerRadius="30"  >
+                </Frame>
+                <ScrollView Margin="0,30,0,0" >
+                    <StackLayout BackgroundColor="#F5F3F3">
+                        <Frame BackgroundColor="#00ACAC" Margin="20,20,20,0" CornerRadius="10" Padding="15">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="mobil_truk.jpg" HeightRequest="100" WidthRequest="100"/>
+                                <StackLayout Padding="10,0,0,0">
+                                    <Label Text="PT. ABCDEFGH"></Label>
+                                    <Label Text="L 9010 BB"></Label>
+                                    <Label Text="No KIM"></Label>
+                                    <Label Text="Status Aktif"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="#00ACAC" Margin="20,20,20,0" CornerRadius="10" Padding="15">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="supir.jpg" HeightRequest="100" WidthRequest="100"/>
+                                <StackLayout Padding="10,0,0,0">
+                                    <Label Text="Nama Supir"></Label>
+                                    <Label Text="KTP"></Label>
+                                    <Label Text="SIM"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="#00ACAC" Margin="20,20,20,0" CornerRadius="10" Padding="15">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="supir.jpg" HeightRequest="100" WidthRequest="100"/>
+                                <StackLayout Padding="10,0,0,0">
+                                    <Label Text="Nama Supir"></Label>
+                                    <Label Text="KTP"></Label>
+                                    <Label Text="SIM"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Button Text="LANJUT" BackgroundColor="#01A2FF"/>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
