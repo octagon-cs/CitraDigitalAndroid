@@ -471,3 +471,7 @@ C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigi
 C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
 C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid.Android\obj\Debug\90\res\drawable\mask_group_3.png
 C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid.Android\obj\Debug\90\res\drawable\mask_group_5.png
+C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid.Android\obj\Debug\90\res\drawable\group_174.png
+C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid.Android\obj\Debug\90\res\drawable\a.png
+C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid.Android\obj\Debug\90\res\drawable\aa.png
+C:\octagon\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid\CitraDigitalAndroid.Android\obj\Debug\90\res\drawable\group_163.png
