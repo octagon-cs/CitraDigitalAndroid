@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CitraDigitalAndroid.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#00ACAC" Margin="0,-50,0,-200" CornerRadius="50"></Frame>
+            <StackLayout Grid.Row="0">
+                <Image Source="Mask_Group_3.png" Margin="40"/> 
+            </StackLayout>
+
+            <Grid Grid.Row="1">
+                <Frame BackgroundColor="White" Margin="30" HeightRequest="100" CornerRadius="30">
+                    <StackLayout>
+                        <Image Source="Logo_Pertamina.png" Margin="0,-20,0,0" HeightRequest="100"/>
+                        <Entry Placeholder="Username"></Entry>
+                        <Entry Placeholder="Password" IsPassword="True"></Entry>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox VerticalOptions="Center"></CheckBox>
+                            <Label Text="Remember me" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <Button BackgroundColor="#00ACAC" VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}" CornerRadius="10"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,0">
+                            <Label Text="Not a member yet?"/>
+                            <Label Text="Click">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text=" here to register"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            <StackLayout Grid.Row="2">
+                <Label Text="Power By Octagon Cendrawasih Solution" Margin="0,-20,0,0" HorizontalOptions="Center"></Label>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
