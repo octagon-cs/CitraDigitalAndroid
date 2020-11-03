@@ -15,8 +15,14 @@ namespace CitraDigitalAndroid
         public App()
         {
             InitializeComponent();
+            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "message", async (message) =>
+            {
+                await Current.MainPage.DisplayAlert(message.Title, message.Message, message.Cancel);
+            });
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<UserService>();
+            DependencyService.Register<ApprovalService>();
             MainPage = new AppShell();
         }
 
@@ -25,8 +31,7 @@ namespace CitraDigitalAndroid
 
             try
             {
-                var result = JsonConvert.DeserializeObject<User>(await SecureStorage.GetAsync("User"));
-                if (result == null)
+                if (!Account.UserIsLogin)
                 {
                     await Shell.Current.GoToAsync("//LoginPage");
                 }

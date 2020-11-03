@@ -22,8 +22,8 @@
                 <Frame BackgroundColor="White" Margin="30" HeightRequest="100" CornerRadius="30">
                     <StackLayout>
                         <Image Source="Logo_Pertamina.png" Margin="0,-20,0,0" HeightRequest="100"/>
-                        <Entry Placeholder="Username"></Entry>
-                        <Entry Placeholder="Password" IsPassword="True"></Entry>
+                        <Entry Placeholder="Username" Text="{Binding UserName}"></Entry>
+                        <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}"></Entry>
                         <StackLayout Orientation="Horizontal">
                             <CheckBox VerticalOptions="Center"></CheckBox>
                             <Label Text="Remember me" VerticalOptions="Center"/>

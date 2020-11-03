@@ -10,7 +10,6 @@ namespace CitraDigitalAndroid.Models
         public string Email { get; set; }
         public string NPWP { get; set; }
         public string Logo { get; set; }
-        public byte[] LogoData { get; set; }
         public int UserId { get; set; }
 
     }

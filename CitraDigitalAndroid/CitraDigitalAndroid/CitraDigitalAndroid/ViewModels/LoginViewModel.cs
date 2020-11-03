@@ -12,13 +12,53 @@ namespace CitraDigitalAndroid.ViewModels
 
         public LoginViewModel()
         {
+            this.UserName = "Approval1";
+            this.Password = "Sony@77";
             LoginCommand = new Command(OnLoginClicked);
         }
 
+
+        private string userName;
+
+        public string UserName
+        {
+            get { return userName; }
+            set { SetProperty(ref userName , value); }
+        }
+
+
+        private string password;
+
+        public string Password
+        {
+            get { return password; }
+            set { SetProperty(ref password , value); }
+        }
+
+
+
         private async void OnLoginClicked(object obj)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+
+            try
+            {
+                var isLogin = await UserService.Login(new Models.AuthenticateRequest { UserName = UserName, Password = Password });
+                if (isLogin)
+                    await Shell.Current.GoToAsync($"//Home");
+                else
+                throw new SystemException("Tidak Berhasil Login !");
+            }
+            catch (Exception ex)
+            {
+                MessagingCenter.Send(new MessagingCenterAlert
+                {
+                    Title = "Error",
+                    Message = ex.Message,
+                    Cancel = "OK"
+                }, "message");
+                IsBusy = false;
+
+            }
         }
     }
 }

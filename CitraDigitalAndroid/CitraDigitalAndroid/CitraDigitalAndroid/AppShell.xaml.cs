@@ -11,13 +11,8 @@ namespace CitraDigitalAndroid
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            Routing.RegisterRoute("home", typeof(HomePage));
-            Routing.RegisterRoute("check", typeof(CheckPage));
-            Routing.RegisterRoute("detailchecktruck", typeof(DetailCheckPage));
-            Routing.RegisterRoute("detailtruck", typeof(DetailTruckPage));
-            Routing.RegisterRoute("approve", typeof(ApprovePage));
+            Routing.RegisterRoute("home/checkpage", typeof(CheckPage));
+
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
@@ -34,9 +29,6 @@ namespace CitraDigitalAndroid
                     await Shell.Current.GoToAsync("home");
                     break;
 
-                case "check":
-                    await Shell.Current.GoToAsync("check");
-                    break;
 
                 case "detailchecktruck":
                     await Shell.Current.GoToAsync("detailchecktruck");

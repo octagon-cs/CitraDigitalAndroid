@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:localView="clr-namespace:CitraDigitalAndroid.Views"  
+              xmlns:model="clr-namespace:CitraDigitalAndroid.Models"  
              x:Class="CitraDigitalAndroid.Views.DetailTruckPage">
     <ContentPage.Content>
         <Grid BackgroundColor="#00ACAC">
@@ -18,37 +20,71 @@
                 <ScrollView Margin="0,30,0,0" >
                     <StackLayout BackgroundColor="#F5F3F3">
                         <Frame BackgroundColor="#00ACAC" Margin="20,0,20,0" CornerRadius="10" Padding="15">
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="mobil_truk.jpg" HeightRequest="100" WidthRequest="100"/>
+                            <StackLayout  Orientation="Horizontal" BackgroundColor="#00ACAC" Padding="5" Margin="5">
+                                <Image Source="mobil_truk.jpg" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" />
                                 <StackLayout Padding="10,0,0,0">
-                                    <Label Text="PT. ABCDEFGH"></Label>
-                                    <Label Text="L 9010 BB"></Label>
-                                    <Label Text="No KIM"></Label>
-                                    <Label Text="Status Aktif"></Label>
+                                    <Label Text="{Binding Model.Pengajuan.Company.Name}"></Label>
+                                    <Label Text="{Binding Model.Truck.PlateNumber}"></Label>
+                                    <Label Text="{Binding Model.Truck.KIM.KimNumber}"></Label>
+                                    <Label Text="{Binding Model.Truck.KIM.Expired}"></Label>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
-                        <Frame BackgroundColor="#00ACAC" Margin="20,20,20,0" CornerRadius="10" Padding="15">
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="supir.jpg" HeightRequest="100" WidthRequest="100"/>
-                                <StackLayout Padding="10,0,0,0">
-                                    <Label Text="Nama Supir"></Label>
-                                    <Label Text="KTP"></Label>
-                                    <Label Text="SIM"></Label>
+                        <Frame BackgroundColor="#00ACAC" Margin="20,5,20,0" CornerRadius="10" Padding="15">
+                            <StackLayout>
+                                <Label Text="Sopir" TextColor="White"></Label>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Binding DriverData.Photo}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                    <StackLayout Padding="10,0,0,0">
+                                        <Label Text="{Binding DriverData.Name}"></Label>
+                                        <Label Text="{Binding DriverData.NumberID}"></Label>
+                                        <Label Text="{Binding DriverData.Number}"></Label>
+                                        <Label Text="{Binding DriverData.Berlaku}"></Label>
+                                        <Label Text="{Binding DriverData.Hingga}"></Label>
+                                    </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
-                        <Frame BackgroundColor="#00ACAC" Margin="20,20,20,0" CornerRadius="10" Padding="15">
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="supir.jpg" HeightRequest="100" WidthRequest="100"/>
-                                <StackLayout Padding="10,0,0,0">
-                                    <Label Text="Nama Supir"></Label>
-                                    <Label Text="KTP"></Label>
-                                    <Label Text="SIM"></Label>
+                        <Frame BackgroundColor="#00ACAC" Margin="20,5,20,0" CornerRadius="10" Padding="15">
+                            <StackLayout>
+                                <Label Text="Asisten Sopir" TextColor="White"></Label>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Binding AssDriverData.Photo}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                    <StackLayout Padding="10,0,0,0">
+                                        <Label Text="{Binding AssDriverData.Name}"></Label>
+                                        <Label Text="{Binding AssDriverData.NumberID}"></Label>
+                                        <Label Text="{Binding AssDriverData.Number}"></Label>
+                                        <Label Text="{Binding AssDriverData.Berlaku}"></Label>
+                                        <Label Text="{Binding AssDriverData.Hingga}"></Label>
+                                    </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
-                        <Button Text="LANJUT" BackgroundColor="#01A2FF" Margin="20" CornerRadius="10"/>
+                        <Frame BackgroundColor="#00ACAC" Margin="20,5,20,0" CornerRadius="10" Padding="15">
+                            <StackLayout>
+                                <Label Text="STNK" TextColor="White"></Label>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Padding="10,0,0,0">
+                                        <Label Text="{Binding VehicleRegistrationData.Number}"></Label>
+                                        <Label Text="{Binding VehicleRegistrationData.Berlaku}"></Label>
+                                        <Label Text="{Binding VehicleRegistrationData.Hingga}"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="#00ACAC" Margin="20,5,20,0" CornerRadius="10" Padding="15">
+                            <StackLayout>
+                                <Label Text="KEUR DLLAJR" TextColor="White"></Label>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Padding="10,0,0,0">
+                                        <Label Text="{Binding KeurDLLAJRData.Number}"></Label>
+                                        <Label Text="{Binding KeurDLLAJRData.Berlaku}"></Label>
+                                        <Label Text="{Binding KeurDLLAJRData.Hingga}"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Button Text="LANJUT" Command="{Binding NextCommand}" BackgroundColor="#01A2FF" Margin="20" CornerRadius="10"/>
                     </StackLayout>
                 </ScrollView>
             </Grid>

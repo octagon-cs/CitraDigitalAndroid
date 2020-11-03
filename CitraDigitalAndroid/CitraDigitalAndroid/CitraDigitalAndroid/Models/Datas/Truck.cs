@@ -14,6 +14,7 @@ namespace CitraDigitalAndroid.Models
         public string DriverName { get; set; }
         public string DriverIDCard { get; set; }
         public string DriverLicense { get; set; }
+       
         public string DriverPhoto { get; set; }
 
         public string AssdriverName { get; set; }
@@ -48,8 +49,8 @@ namespace CitraDigitalAndroid.Models
         string DriverName { get; set; }
         string DriverIDCard { get; set; }
         string DriverLicense { get; set; }
+       
         string DriverPhoto { get; set; }
-
         string AssdriverName { get; set; }
         string AssdriverIDCard { get; set; }
         string AssdriverLicense { get; set; }
