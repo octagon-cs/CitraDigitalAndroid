@@ -42,7 +42,7 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Text="{Binding Name}"></Label>
+                                            <Label TextColor="White" Text="{Binding Name}"></Label>
                                             <CheckBox Grid.Column="1" IsEnabled="False" VerticalOptions="Start" IsChecked="{Binding Complete}" HorizontalOptions="End"/>
                                         </Grid>
                                         <Frame.GestureRecognizers>
@@ -58,7 +58,10 @@
                     </CollectionView>
                 </RefreshView>
             </Grid>
-            <Button Grid.Row="2" Text="Approve" Command="{Binding ApprovedCommand}"  BackgroundColor="#00ACAC" />
+            <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Margin="2"  Text="Reject" Command="{Binding RejectCommand}" WidthRequest="120" HeightRequest="40"  BackgroundColor="OrangeRed" />
+                <Button Margin="2" Text="Approve" Command="{Binding ApproveCommand}" WidthRequest="120" HeightRequest="40"  BackgroundColor="YellowGreen" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

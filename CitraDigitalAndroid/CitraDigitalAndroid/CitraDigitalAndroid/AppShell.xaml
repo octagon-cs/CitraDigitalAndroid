@@ -8,7 +8,7 @@
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
             <StackLayout  HeightRequest="150">
-                <Label FontSize="Caption" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Header"/>
+                <Image Source="Logo_Pertamina.png" Margin="10" Aspect="AspectFill" VerticalOptions="CenterAndExpand" WidthRequest="75" HeightRequest="100"/>
             </StackLayout>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
@@ -72,7 +72,7 @@
         </ResourceDictionary>
     </Shell.Resources>
     <FlyoutItem Title="Home" Icon="tab_feed.png">
-        <ShellContent Route="Home" ContentTemplate="{DataTemplate local:HomePage}"/>
+        <ShellContent  Route="Home" ContentTemplate="{DataTemplate local:HomePage}"/>
     </FlyoutItem>
     <FlyoutItem Title="About" Icon="home.png">
         <ShellContent  ContentTemplate="{DataTemplate local:AboutPage}"/>

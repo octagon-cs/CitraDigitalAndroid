@@ -34,7 +34,8 @@ namespace CitraDigitalAndroid.Views
 
         public ObservableCollection<GroupPemeriksaan> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
+        public Command <PengajuanItem> RejectCommand { get; }
+        public Command <PengajuanItem> ApproveCommand { get; }
         public Command<GroupPemeriksaan> ItemTapped { get; }
         public CheckPageViewModel(PengajuanItem item)
         {
@@ -43,13 +44,66 @@ namespace CitraDigitalAndroid.Views
             Items = new ObservableCollection<GroupPemeriksaan>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<GroupPemeriksaan>(OnItemSelected);
-            AddItemCommand = new Command(OnAddItem);
+            ApproveCommand = new Command<PengajuanItem>(ApproveAction);
+            RejectCommand = new Command<PengajuanItem>(RejectAction);
+
             LoadItemsCommand.Execute(null);
         }
 
-        private void OnAddItem(object obj)
+        private async void RejectAction(PengajuanItem obj)
         {
-            throw new NotImplementedException();
+            if (IsBusy)
+                return;
+            try
+            {
+                var result= await ApprovalService.Reject(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                if (result != null)
+                {
+                    MessagingCenter.Send(Model, "approve");
+                    await Shell.Current.GoToAsync($"//Home");
+                }
+                else
+                    throw new SystemException("Gagal... !, Periksa Kembali Data Anda");
+
+            }
+            catch (Exception ex)
+            {
+                MessagingCenter.Send(new MessagingCenterAlert
+                {
+                    Title = "Error",
+                    Message = ex.Message,
+                    Cancel = "OK"
+                }, "message");
+                IsBusy = false;
+            }
+        }
+
+        private async void ApproveAction(PengajuanItem obj)
+        {
+            if (IsBusy)
+                return;
+            try
+            {
+                var result = await ApprovalService.Approve(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                if (result != null)
+                {
+                    MessagingCenter.Send(Model, "approve");
+                    await Shell.Current.GoToAsync($"//Home");
+                }
+                else
+                    throw new SystemException("Gagal... !, Periksa Kembali Data Anda");
+
+            }
+            catch (Exception ex)
+            {
+                MessagingCenter.Send(new MessagingCenterAlert
+                {
+                    Title = "Error",
+                    Message = ex.Message,
+                    Cancel = "OK"
+                }, "message");
+                IsBusy = false;
+            }
         }
 
         public async void OnItemSelected(GroupPemeriksaan obj)

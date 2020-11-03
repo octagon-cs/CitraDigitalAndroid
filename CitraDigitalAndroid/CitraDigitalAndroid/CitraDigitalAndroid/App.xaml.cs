@@ -6,6 +6,9 @@ using CitraDigitalAndroid.Views;
 using Xamarin.Essentials;
 using CitraDigitalAndroid.Models;
 using Newtonsoft.Json;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace CitraDigitalAndroid
 {
@@ -15,6 +18,8 @@ namespace CitraDigitalAndroid
         public App()
         {
             InitializeComponent();
+            AppCenter.Start("android=ba425392-a4f3-412b-b6d0-2745f88f1500;" ,
+                   typeof(Analytics), typeof(Crashes));
             MessagingCenter.Subscribe<MessagingCenterAlert>(this, "message", async (message) =>
             {
                 await Current.MainPage.DisplayAlert(message.Title, message.Message, message.Cancel);
@@ -28,17 +33,23 @@ namespace CitraDigitalAndroid
 
         protected override async void OnStart()
         {
-
             try
             {
                 if (!Account.UserIsLogin)
                 {
                     await Shell.Current.GoToAsync("//LoginPage");
                 }
+                else
+                {
+                    if (await Account.UserInRole(UserType.Gate))
+                    {
+                        MainPage = new GateShell();
+                    }
+                }
             }
             catch 
             {
-                
+                await Shell.Current.GoToAsync("//LoginPage");
             }
             
 

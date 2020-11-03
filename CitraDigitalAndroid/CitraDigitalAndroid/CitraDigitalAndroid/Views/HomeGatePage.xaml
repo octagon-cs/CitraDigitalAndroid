@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:localView="clr-namespace:CitraDigitalAndroid.Views"  
-              xmlns:model="clr-namespace:CitraDigitalAndroid.Models"  
-             x:Class="CitraDigitalAndroid.Views.HomePage">
+              xmlns:model="clr-namespace:CitraDigitalAndroid.Models"
+             Title="Home Gate"
+             x:Class="CitraDigitalAndroid.Views.HomeGatePage">
     <ContentPage.Content>
         <Grid BackgroundColor="#00ACAC">
             <Grid.RowDefinitions>

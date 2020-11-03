@@ -10,15 +10,33 @@ namespace CitraDigitalAndroid.Services
     public interface IApprovalService
     {
         Task<Persetujuan> Approve(int id, List<HasilPemeriksaan> hasil);
+        Task<Persetujuan> Reject(int id, List<HasilPemeriksaan> hasil);
         Task<List<PengajuanItem>> GetPersetujuan();
         Task<List<HasilPemeriksaan>> GetPenilaian(int itemPengajuanId);
     }
     public class ApprovalService : IApprovalService
     {
         private string controller = "api/approval";
-        public Task<Persetujuan> Approve(int id, List<HasilPemeriksaan> hasil)
+        public async Task<Persetujuan> Approve(int id, List<HasilPemeriksaan> hasil)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var client = new RestService())
+                {
+                    var response = await client.PostAsync($"{controller}/approve/{id}", client.GenerateHttpContent(hasil));
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var resultString = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<Persetujuan>(resultString);
+                        return result;
+                    }else
+                        throw new SystemException(await client.Error(response));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new SystemException(ex.Message);
+            }
         }
 
         public async Task<List<HasilPemeriksaan>> GetPenilaian(int itemPengajuanId)
@@ -33,7 +51,7 @@ namespace CitraDigitalAndroid.Services
                         var resultString = await response.Content.ReadAsStringAsync();
                         var result = JsonConvert.DeserializeObject<List<HasilPemeriksaan>>(resultString);
                         return result;
-                    }
+                    }  else
                     throw new SystemException(await client.Error(response));
                 }
             }
@@ -55,7 +73,7 @@ namespace CitraDigitalAndroid.Services
                         var resultString = await response.Content.ReadAsStringAsync();
                         var result = JsonConvert.DeserializeObject<List<PengajuanItem>>(resultString);
                         return result;
-                    }
+                    }  else
                    throw new SystemException(await client.Error(response));
                 }
             }
@@ -65,5 +83,26 @@ namespace CitraDigitalAndroid.Services
             }
         }
 
+        public async Task<Persetujuan> Reject(int id, List<HasilPemeriksaan> hasil)
+        {
+            try
+            {
+                using (var client = new RestService())
+                {
+                    var response = await client.PostAsync($"{controller}/reject/{id}", client.GenerateHttpContent(hasil));
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var resultString = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<Persetujuan>(resultString);
+                        return result;
+                    }   else
+                    throw new SystemException(await client.Error(response));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new SystemException(ex.Message);
+            }
+        }
     }
 }

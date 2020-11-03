@@ -6,9 +6,9 @@ using Xamarin.Forms;
 
 namespace CitraDigitalAndroid
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class GateShell : Xamarin.Forms.Shell
     {
-        public AppShell()
+        public GateShell()
         {
             InitializeComponent();
         }

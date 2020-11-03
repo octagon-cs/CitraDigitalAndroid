@@ -1,19 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         xmlns:local="clr-namespace:CitraDigitalAndroid.Views"
-             mc:Ignorable="d"
-             x:Class="CitraDigitalAndroid.Views.CheckSell">
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:CitraDigitalAndroid.Views"
+       Title="CitraDigitalAndroid"
+       x:Class="CitraDigitalAndroid.GateShell">
+
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
             <StackLayout  HeightRequest="150">
-                <Label FontSize="Caption" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Header"/>
+                <Image Source="Logo_Pertamina.png" Margin="10" Aspect="AspectFill" VerticalOptions="CenterAndExpand" WidthRequest="75" HeightRequest="100"/>
             </StackLayout>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
-
+    
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -73,12 +72,13 @@
         </ResourceDictionary>
     </Shell.Resources>
     <FlyoutItem Title="Home" Icon="tab_feed.png">
-        <ShellContent Route="Home" ContentTemplate="{DataTemplate local:DetailTruckPage}"/>
+        <ShellContent  Route="Home" ContentTemplate="{DataTemplate local:HomeGatePage}"/>
     </FlyoutItem>
-    <FlyoutItem x:Name="shellModules" 
-            Title="Modules" 
-            FlyoutDisplayOptions="AsMultipleItems" 
-            Items="{Binding MenuItems}">
+    <FlyoutItem Title="About" Icon="home.png">
+        <ShellContent  ContentTemplate="{DataTemplate local:AboutPage}"/>
     </FlyoutItem>
+    <MenuItem  Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked"/>
+    <ShellContent Route="LoginPage" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:LoginPage}"></ShellContent>
+
 
 </Shell>

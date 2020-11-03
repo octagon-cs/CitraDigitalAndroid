@@ -35,16 +35,23 @@ namespace CitraDigitalAndroid.ViewModels
             set { SetProperty(ref password , value); }
         }
 
-
-
         private async void OnLoginClicked(object obj)
         {
-
             try
             {
                 var isLogin = await UserService.Login(new Models.AuthenticateRequest { UserName = UserName, Password = Password });
                 if (isLogin)
-                    await Shell.Current.GoToAsync($"//Home");
+                {
+                    if (await Account.UserInRole(UserType.Gate))
+                    {
+                        Application.Current.MainPage = new GateShell();
+                    }
+                    else
+                    {
+                        Application.Current.MainPage = new AppShell();
+                    }
+                        await Shell.Current.GoToAsync("//Home");
+                }
                 else
                 throw new SystemException("Tidak Berhasil Login !");
             }

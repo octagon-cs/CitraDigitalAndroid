@@ -14,9 +14,9 @@ using Xamarin.Forms.Xaml;
 namespace CitraDigitalAndroid.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class HomeGatePage : ContentPage
     {
-        public HomePage()
+        public HomeGatePage()
         {
             InitializeComponent();
             this.BindingContext = new HomeViewModel();
@@ -24,7 +24,7 @@ namespace CitraDigitalAndroid.Views
     }
 
 
-    public class HomeViewModel : BaseViewModel
+    public class HomeGatePageViewModel : BaseViewModel
     {
         private PengajuanItem _selectedItem;
 
@@ -33,7 +33,7 @@ namespace CitraDigitalAndroid.Views
         public Command AddItemCommand { get; }
         public Command<PengajuanItem> ItemTapped { get; }
 
-        public HomeViewModel()
+        public HomeGatePageViewModel()
         {
             Title = "Home";
             Items = new ObservableCollection<PengajuanItem>();
