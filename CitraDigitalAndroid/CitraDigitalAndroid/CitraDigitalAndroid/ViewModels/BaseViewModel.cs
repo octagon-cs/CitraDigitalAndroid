@@ -15,6 +15,7 @@ namespace CitraDigitalAndroid.ViewModels
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public IUserService UserService=> DependencyService.Get<UserService>();
         public IApprovalService ApprovalService => DependencyService.Get<ApprovalService>();
+        public IGateService GateService=> DependencyService.Get<GateService>();
 
         bool isBusy = false;
         public bool IsBusy

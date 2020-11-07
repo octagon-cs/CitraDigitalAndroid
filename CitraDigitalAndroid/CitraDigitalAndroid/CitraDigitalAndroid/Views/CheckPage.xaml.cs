@@ -119,8 +119,10 @@ namespace CitraDigitalAndroid.Views
             await Task.Delay(1000);
             try
             {
-                var items = await ApprovalService.GetPenilaian(Model.Id);
                 Items.Clear();
+                var items = Model.HasilPemeriksaan;
+                if(items==null || items.Count<=0)
+                    items = await ApprovalService.GetPenilaian(Model.Id);
 
                 if(items!=null && items.Count > 0)
                 {

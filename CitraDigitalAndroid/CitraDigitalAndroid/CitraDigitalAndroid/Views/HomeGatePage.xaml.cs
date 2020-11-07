@@ -19,50 +19,36 @@ namespace CitraDigitalAndroid.Views
         public HomeGatePage()
         {
             InitializeComponent();
-            this.BindingContext = new HomeViewModel();
+            this.BindingContext = new HomeGatePageViewModel();
         }
     }
 
 
     public class HomeGatePageViewModel : BaseViewModel
     {
-        private PengajuanItem _selectedItem;
-
-        public ObservableCollection<PengajuanItem> Items { get; }
+        public ObservableCollection<Truck> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command<PengajuanItem> ItemTapped { get; }
+        public Command<Truck> ItemTapped { get; }
 
         public HomeGatePageViewModel()
         {
             Title = "Home";
-            Items = new ObservableCollection<PengajuanItem>();
+            Items = new ObservableCollection<Truck>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            ItemTapped = new Command<PengajuanItem>(OnItemSelected);
-            AddItemCommand = new Command(OnAddItem);
+            ItemTapped = new Command<Truck>(OnItemSelected);
             LoadItemsCommand.Execute(null);
-            MessagingCenter.Subscribe<PengajuanItem>(this, "approve",  (param) =>
-            {
-                if (param != null)
-                {
-                    var data = Items.Where(x => x.Id == param.Id).FirstOrDefault();
-                    if (data != null)
-                    {
-                        Items.Remove(data);
-                    }
-                }
-               
-            });
         }
 
         async Task ExecuteLoadItemsCommand()
         {
-            IsBusy = true;
-            await Task.Delay(1000);    
             try
             {
-                var items = await ApprovalService.GetPersetujuan();
+                if (IsBusy)
+                    return;
+                IsBusy = true;
+                await Task.Delay(1000);
                 Items.Clear();
+                var items = await GateService.Trucks();
                 foreach (var item in items)
                 {
                         Items.Add(item);
@@ -77,39 +63,37 @@ namespace CitraDigitalAndroid.Views
             }
             finally
             {
+                await Task.Delay(100);
                 IsBusy = false;
             }
         }
 
-        public void OnAppearing()
-        {
-            IsBusy = true;
-            SelectedItem = null;
-        }
 
-        public PengajuanItem SelectedItem
+        async  void OnItemSelected(Truck truck)
         {
-            get => _selectedItem;
-            set
+            try
             {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
+                if (truck == null)
+                    return;
+
+                
+
+                var lastItem = await GateService.TruckLastChencUp(truck.Id);
+                if (lastItem==null)
+                    throw new SystemException("Truck Belum Diajukan Untuk Dibuatkan KIM.");
+
+
+
+                var page = new DetailTruckPage();
+                page.BindingContext = new DetailTruckPageViewModel(lastItem);
+                await Shell.Current.Navigation.PushAsync(page);
             }
-        }
-
-        private async void OnAddItem(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
-        }
-
-        async void OnItemSelected(PengajuanItem item)
-        {
-            if (item == null)
-                return;
-
-            var page = new DetailTruckPage();
-            page.BindingContext = new DetailTruckPageViewModel(item);
-            await Shell.Current.Navigation.PushAsync(page);
+            catch (Exception ex)
+            {
+                MessagingCenter.Send<MessagingCenterAlert>(new MessagingCenterAlert {
+                 Message=ex.Message, Title="Error", Cancel="Keluar"
+                }, "message");
+            }
         }
 
         private bool notFound;

@@ -28,6 +28,8 @@ namespace CitraDigitalAndroid
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<UserService>();
             DependencyService.Register<ApprovalService>();
+            DependencyService.Register<GateService>();
+
             MainPage = new AppShell();
         }
 
