@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CitraDigitalAndroid.Views.DetailCheckPage">
+             xmlns:local="clr-namespace:CitraDigitalAndroid"
+             xmlns:localView="clr-namespace:CitraDigitalAndroid.Views"
+             x:Class="CitraDigitalAndroid.Views.DetailCheckPage"
+             Title="Detail Pemeriksaan">
     <ContentPage.Content>
         <Grid BackgroundColor="#00ACAC">
             <Grid.RowDefinitions>
@@ -34,6 +37,16 @@
                                         <Editor AutoSize="TextChanges" Text="{Binding Keterangan}"/>
                                         <Label Text="Tidak Lanjut"/>
                                         <Editor AutoSize="TextChanges"  Text="{Binding TindakLanjut}"/>
+                                        <Label Text="Kompensasi Hingga"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <local:MyDatePicker x:Name="myPick"  PropertyChanged="MyDatePicker_PropertyChanged"  Date="{Binding CompensationDeadline, Mode=TwoWay}" />
+                                            <Button Grid.Column="1" Command="{Binding  Source={RelativeSource AncestorType={x:Type localView:DetailCheckPageViewModel}}, Path=ClearCompesationCommand}" 
+                                                    CommandParameter="{Binding Source={x:Reference myPick}}" Text="Clear" HorizontalOptions="End"></Button>
+                                        </Grid>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -42,6 +55,8 @@
                 </CollectionView>
             </Grid>
             <Button Grid.Row="2" Margin="5" Command="{Binding BackCommand}" CornerRadius="5" Text="OK"></Button>
+       
+        
         </Grid>
     </ContentPage.Content>
 </ContentPage>

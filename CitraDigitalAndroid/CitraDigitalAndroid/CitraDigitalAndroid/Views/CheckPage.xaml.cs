@@ -56,7 +56,15 @@ namespace CitraDigitalAndroid.Views
                 return;
             try
             {
-                var result= await ApprovalService.Reject(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                object result = null;
+                if (await Account.UserInRole(UserType.Gate))
+                {
+                    result = await GateService.Reject(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                }
+                else
+                {
+                    result = await ApprovalService.Reject(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                }
                 if (result != null)
                 {
                     MessagingCenter.Send(Model, "approve");
@@ -84,7 +92,16 @@ namespace CitraDigitalAndroid.Views
                 return;
             try
             {
-                var result = await ApprovalService.Approve(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                object result = null;
+                if (await Account.UserInRole(UserType.Gate))
+                {
+                    result = await GateService.Approve(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                }
+                else
+                {
+                    result = await ApprovalService.Approve(Model.Id, Items.SelectMany(x => x.Items).ToList());
+                }
+
                 if (result != null)
                 {
                     MessagingCenter.Send(Model, "approve");
@@ -115,15 +132,22 @@ namespace CitraDigitalAndroid.Views
 
         private async Task ExecuteLoadItemsCommand()
         {
-            IsBusy = true;
+            if(IsBusy)
+                return;
             await Task.Delay(1000);
             try
             {
+                IsBusy = true;
                 Items.Clear();
-                var items = Model.HasilPemeriksaan;
-                if(items==null || items.Count<=0)
+                List<HasilPemeriksaan> items = null;            
+                if (await Account.UserInRole(UserType.Gate))
+                {
+                   items= Model.HasilPemeriksaan;
+                }
+                else
+                {
                     items = await ApprovalService.GetPenilaian(Model.Id);
-
+                }
                 if(items!=null && items.Count > 0)
                 {
                     var groups = items.GroupBy(x => x.ItemPemeriksaan.Pemeriksaan.Id);

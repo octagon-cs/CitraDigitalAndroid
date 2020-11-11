@@ -11,7 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="65*"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Frame BackgroundColor="#00ACAC" Margin="0,-50,0,-200" CornerRadius="50"></Frame>
             <StackLayout Grid.Row="0">
@@ -33,6 +33,7 @@
                 </Frame>
             </Grid>
             <StackLayout Grid.Row="2">
+                <Entry Text="{Binding URL}" HorizontalOptions="Center" WidthRequest="200" ></Entry>
                 <Label Text="Power By Octagon Cendrawasih Solution" Margin="0,-20,0,0" HorizontalOptions="Center"></Label>
             </StackLayout>
         </Grid>

@@ -36,9 +36,20 @@ namespace CitraDigitalAndroid.Models
             }
         }
 
+        public List<TruckIncomming> Incommings { get; set; }
+        public TruckIncomming LastIncomming
+        {
+            get
+            {
+                if (Incommings == null || Incommings.Count <= 0)
+                    return null;
+                return Incommings.Last();
+            }
+        }
+
     }
 
-   
+
     public class DataDocument
     {
         public int Id { get; set; }

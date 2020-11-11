@@ -19,7 +19,7 @@ namespace CitraDigitalAndroid.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            Forms.SetFlags("Expander_Experimental", "RadioButton_Experimental");
+            Forms.SetFlags("Expander_Experimental", "RadioButton_Experimental", "SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

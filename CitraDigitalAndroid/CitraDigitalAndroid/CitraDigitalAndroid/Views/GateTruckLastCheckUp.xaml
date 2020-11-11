@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:CitraDigitalAndroid"
+              xmlns:localView="clr-namespace:CitraDigitalAndroid.Views"  
+              xmlns:model="clr-namespace:CitraDigitalAndroid.Models"  
+             mc:Ignorable="d" Title="Info Pemeriksaan Terakhir"
+             x:Class="CitraDigitalAndroid.Views.GateTruckLastCheckUp">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Margin="20"  >
+                <Label FontSize="18" FontAttributes="Bold" Text="CATATAN" HorizontalOptions="Center" />
+                <Label FontSize="18" FontAttributes="Bold" Text="PEMERIKSAAN TERAKHIR" HorizontalOptions="Center" />
+                <StackLayout>
+                    <Label Text="Tanggal Pemeriksaan"/>
+                    <Label FontAttributes="Bold" Text="{Binding Model.Created, StringFormat='{0:dd MMM yyyy}'}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Diizinkan Masuk" VerticalOptions="Center"/>
+                        <CheckBox IsEnabled="False" IsChecked="{Binding Model.Status}" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <CollectionView ItemsSource="{Binding Items}" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:IncommingNote" >
+                                <Frame  BackgroundColor="White" CornerRadius="10" Margin="5">
+                                    <StackLayout Margin="15,0,15,0">
+                                        <Label FontAttributes="Bold"  Text="Perihal"/>
+                                        <Label Text="{Binding Title}"/>
+                                        <Label FontAttributes="Bold"  Text="Catatan/Keterangan"/>
+                                        <Label Text="{Binding Note}"/>
+
+                                        <Label FontAttributes="Bold"  Text="Tindak Lanjut"/>
+                                        <Label Text="{Binding NoteAction}"/>
+
+                                        <Label FontAttributes="Bold"  Text="Konpensasi Hingga"/>
+                                        <Label Text="{Binding CompensationDeadline}"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Margin="2"  Text="Kembali" Command="{Binding RejectCommand}" WidthRequest="120" HeightRequest="40"  BackgroundColor="OrangeRed" />
+                <Button Margin="2" Text="Lanjut" Command="{Binding ApproveCommand}" WidthRequest="120" HeightRequest="40"  BackgroundColor="YellowGreen" />
+            </StackLayout>
+        </Grid>
+     
+    </ContentPage.Content>
+</ContentPage>

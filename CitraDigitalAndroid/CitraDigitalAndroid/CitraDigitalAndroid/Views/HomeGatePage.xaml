@@ -19,33 +19,54 @@
                 </Frame>
                 <Label IsVisible="{Binding NotFound}" Text="Tidak Ada Data Pengajuan ..!"
                        HorizontalOptions="CenterAndExpand" FontSize="14"></Label>
-                <RefreshView Margin="0,-20,0,0"  x:DataType="localView:HomeGatePageViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <RefreshView Margin="0,0,0,0"  x:DataType="localView:HomeGatePageViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
                     <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 SelectionMode="None">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout Padding="20,10,20,5" x:DataType="model:Truck">
-                                    <Frame BackgroundColor="#00ACAC" CornerRadius="10" Padding="15">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Image Source="mobil_truk.jpg" VerticalOptions="StartAndExpand"  WidthRequest="100"/>
-                                            <StackLayout Padding="10,0,0,0">
-                                                <Label Text="{Binding Company.Name}"></Label>
-                                                <Label Text="{Binding PlateNumber}"></Label>
-                                                <Label Text="{Binding KIM.KimNumber}"></Label>
-                                                <Label Text="{Binding KIM.Expired}"></Label>
-                                            </StackLayout>
+                                <SwipeView >
+                                    <SwipeView.RightItems>
+                                        <SwipeItems >
+                                            <SwipeItemView>
+                                                <StackLayout WidthRequest="100" VerticalOptions="CenterAndExpand" Padding="10">
+                                                    <Button BackgroundColor="Orange" VerticalOptions="Center" Text="Info" FontAttributes="Bold"
+                                                             Command="{Binding Source={RelativeSource AncestorType={x:Type localView:HomeGatePageViewModel}}, Path=InfoTapped}"		
+                                                            CommandParameter="{Binding .}"
+                                                            HorizontalOptions="CenterAndExpand" />
+                                                    <Button Text="Periksa" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" 
+                                                             Command="{Binding Source={RelativeSource AncestorType={x:Type localView:HomeGatePageViewModel}}, Path=ItemTapped}"		
+                                                            CommandParameter="{Binding .}"
+                                                            />
+                                                </StackLayout>
+                                            </SwipeItemView>
+                                           
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <!-- Content -->
+                                    <Grid >
+                                        <StackLayout Margin="5"  x:DataType="model:Truck">
+                                            <Frame BackgroundColor="#00ACAC" CornerRadius="10" Padding="15">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Image Source="mobil_truk.jpg" VerticalOptions="StartAndExpand"  WidthRequest="100"/>
+                                                    <StackLayout Padding="10,0,0,0">
+                                                        <Label Text="{Binding Company.Name}"></Label>
+                                                        <Label Text="{Binding PlateNumber}"></Label>
+                                                        <Label Text="{Binding KIM.KimNumber}"></Label>
+                                                        <Label Text="{Binding KIM.Expired}"></Label>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer 
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type localView:HomeGatePageViewModel}}, Path=ItemTapped}"		
+                                                CommandParameter="{Binding .}">
+                                                </TapGestureRecognizer>
+                                            </StackLayout.GestureRecognizers>
                                         </StackLayout>
-                                    </Frame>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type localView:HomeGatePageViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                                        </TapGestureRecognizer>
-                                    </StackLayout.GestureRecognizers>
-                                 
-                                </StackLayout>
+                                    </Grid>
+                                </SwipeView>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

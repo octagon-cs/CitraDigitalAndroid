@@ -29,6 +29,7 @@ namespace CitraDigitalAndroid.Views
         public ObservableCollection<Truck> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command<Truck> ItemTapped { get; }
+        public Command<Truck> InfoTapped { get; }
 
         public HomeGatePageViewModel()
         {
@@ -36,7 +37,52 @@ namespace CitraDigitalAndroid.Views
             Items = new ObservableCollection<Truck>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<Truck>(OnItemSelected);
+            InfoTapped = new Command<Truck>(OnInfoSelected);
             LoadItemsCommand.Execute(null);
+        }
+
+        private async void OnInfoSelected(Truck truck)
+        {
+            try
+            {
+                if (truck == null)
+                    return;
+
+                var lastItem = await GateService.TruckLastChencUp(truck.Id);
+                if (lastItem == null)
+                    throw new SystemException("Truck Belum Diajukan Untuk Dibuatkan KIM.");
+
+                if (lastItem.Truck.KIM == null)
+                {
+                    throw new SystemException("Truck Belum Memiliki KIM.");
+                }
+
+                var lastIncoming = lastItem.Truck.LastIncomming;
+                if (lastIncoming != null && lastIncoming.Notes != null &&
+                    lastIncoming.Notes.Count > 0)
+                {
+                    var pageInfo = new GateTruckLastCheckUp(lastItem);
+                    await Shell.Current.Navigation.PushModalAsync(pageInfo);
+                }else
+                {
+                    MessagingCenter.Send<MessagingCenterAlert>(new MessagingCenterAlert
+                    {
+                        Message = "Tidak Ada Info Terakhir",
+                        Title = "Error",
+                        Cancel = "Keluar"
+                    }, "message");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessagingCenter.Send<MessagingCenterAlert>(new MessagingCenterAlert
+                {
+                    Message = ex.Message,
+                    Title = "Error",
+                    Cancel = "Keluar"
+                }, "message");
+            }
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -83,10 +129,18 @@ namespace CitraDigitalAndroid.Views
                     throw new SystemException("Truck Belum Diajukan Untuk Dibuatkan KIM.");
 
 
+                if (lastItem.Truck.KIM == null)
+                {
+                    throw new SystemException("Truck Belum Memiliki KIM.");
+                }
 
-                var page = new DetailTruckPage();
-                page.BindingContext = new DetailTruckPageViewModel(lastItem);
-                await Shell.Current.Navigation.PushAsync(page);
+              
+                    var page = new DetailTruckPage();
+                    page.BindingContext = new DetailTruckPageViewModel(lastItem);
+                    await Shell.Current.Navigation.PushAsync(page);
+
+
+               
             }
             catch (Exception ex)
             {

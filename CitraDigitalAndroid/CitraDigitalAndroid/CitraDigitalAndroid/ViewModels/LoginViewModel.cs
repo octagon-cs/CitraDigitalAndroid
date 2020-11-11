@@ -18,6 +18,22 @@ namespace CitraDigitalAndroid.ViewModels
         }
 
 
+        private string url;
+
+        public string URL
+        {
+            get {
+                if (string.IsNullOrEmpty(url))
+                    url = Helper.Url;
+                return url; }
+            set { SetProperty(ref url , value);
+                Helper.Url = value;
+            }
+            
+        }
+
+
+
         private string userName;
 
         public string UserName

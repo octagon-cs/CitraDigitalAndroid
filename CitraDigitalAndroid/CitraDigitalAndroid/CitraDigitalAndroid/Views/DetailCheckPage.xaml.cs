@@ -18,6 +18,11 @@ namespace CitraDigitalAndroid.Views
         {
             InitializeComponent();
         }
+
+        private void MyDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        }
     }
 
 
@@ -26,11 +31,25 @@ namespace CitraDigitalAndroid.Views
     {
         public GroupPemeriksaan Group { get; set; }
         public Command BackCommand { get; }
+        public Command ClearCompesationCommand { get; }
 
         public DetailCheckPageViewModel(GroupPemeriksaan obj)
         {
             this.Group= obj;
             BackCommand = new Command(BackAction);
+            ClearCompesationCommand = new Command(ClearCompetationDate);
+        }
+
+        private async void ClearCompetationDate(object obj)
+        {
+            await Task.Delay(200);
+            var picker = obj as MyDatePicker;
+            if (picker != null)
+            {
+                 var hasil = picker.BindingContext as HasilPemeriksaan;
+                hasil.CompensationDeadline = null;
+                picker.NullableDate = null;
+            }
         }
 
         private async void BackAction(object obj)

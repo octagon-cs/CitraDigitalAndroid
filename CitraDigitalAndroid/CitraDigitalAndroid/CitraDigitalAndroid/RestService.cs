@@ -58,7 +58,17 @@ namespace CitraDigitalAndroid
         {
             try
             {
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    return $"'{response.RequestMessage.RequestUri.LocalPath}'  Not Found";
                 var content = await response.Content.ReadAsStringAsync();
+                if (string.IsNullOrEmpty(content))
+                    throw new SystemException();
+
+                if (content.Contains("message"))
+                {
+                    var error = JsonConvert.DeserializeObject<ErrorMessage>(content);
+                    return error.Message;
+                }
                 return content;
             }
             catch (Exception)
