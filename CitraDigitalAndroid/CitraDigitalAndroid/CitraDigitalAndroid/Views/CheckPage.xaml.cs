@@ -150,11 +150,11 @@ namespace CitraDigitalAndroid.Views
                 }
                 if(items!=null && items.Count > 0)
                 {
-                    var groups = items.GroupBy(x => x.ItemPemeriksaan.Pemeriksaan.Id);
+                    var groups = items.GroupBy(x => x.ItemPemeriksaanId);
                     foreach (var group in groups)
                     {
                         var data = group.FirstOrDefault();
-                        Items.Add(new GroupPemeriksaan { PemeriksaanId = group.Key, Name = data.ItemPemeriksaan.Pemeriksaan.Name, Items = group.ToList() });
+                        Items.Add(new GroupPemeriksaan {  Name=data.ItemPemeriksaan.Kelengkapan,    PemeriksaanId = group.Key,Items = group.ToList() });
                     }
                 }
             }

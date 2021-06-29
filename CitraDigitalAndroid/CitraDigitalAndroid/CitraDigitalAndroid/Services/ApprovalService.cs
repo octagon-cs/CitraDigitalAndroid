@@ -53,8 +53,10 @@ namespace CitraDigitalAndroid.Services
                         var resultString = await response.Content.ReadAsStringAsync();
                         var result = JsonConvert.DeserializeObject<List<HasilPemeriksaan>>(resultString);
                         return result;
-                    }  else
-                    throw new SystemException(await client.Error(response));
+                    }else
+                    {
+                        throw new SystemException(await client.Error(response));
+                    }
                 }
             }
             catch (Exception ex)

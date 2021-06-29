@@ -26,13 +26,23 @@
                         <Frame BackgroundColor="#00ACAC" Margin="20,0,20,0" CornerRadius="10" Padding="15">
                             <StackLayout>
                                 <Label Text="Mobil" TextColor="White"></Label>
-                                <StackLayout  Orientation="Horizontal" BackgroundColor="#00ACAC" Padding="5" Margin="5">
+                                <StackLayout  Orientation="Horizontal" BackgroundColor="#00ACAC" >
                                     <Image Source="{Binding Model.Truck.TruckPhoto, Converter={StaticResource imageSourceConverter}}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" />
                                     <StackLayout Padding="10,0,0,0">
-                                        <Label Text="{Binding Model.Truck.Company.Name}"></Label>
-                                        <Label Text="{Binding Model.Truck.PlateNumber}"></Label>
-                                        <Label Text="{Binding Model.Truck.KIM.KimNumber}"></Label>
-                                        <Label Text="{Binding Model.Truck.KIM.Expired}"></Label>
+                                        <Label Text="Perusahaan" TextColor="LightGray"  FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.Company.Name}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="No Polisi" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.PlateNumber}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="Nomor KIM" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.KIM.KimNumber}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="KIM Berlaku Hingga" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.KIM.Expired}" TextColor="White"></Label>
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
@@ -41,52 +51,118 @@
                             <StackLayout>
                                 <Label Text="Sopir" TextColor="White"></Label>
                                 <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Binding Model.Truck.DriverPhoto}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                    <StackLayout>
+                                        <Image Source="{Binding DriverData.Photo}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                    </StackLayout>
                                     <StackLayout Padding="10,0,0,0">
-                                        <Label Text="{Binding Model.Truck.DriverName}"></Label>
-                                        <Label Text="{Binding Model.Truck.DriverIDCard.Number}"></Label>
-                                        <Label Text="{Binding Model.Truck.DriverLicence.Number}"></Label>
-                                        <Label Text="{Binding Model.Truck.DriverLicence.Berlaku}"></Label>
-                                        <Label Text="{Binding Model.Truck.DriverLicence.Hingga}"></Label>
+                                        <Label Text="Nama" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.DriverName}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="KTP" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding  Model.Truck.DriverIDCard.Number}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="SIM" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.DriverLicense.Number}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="SIM Berlaku Hingga" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label TextColor="White">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding  Model.Truck.DriverLicense.Berlaku, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                    <Span Text=" - "></Span>
+                                                    <Span Text="{Binding  Model.Truck.DriverLicense.Hingga, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
                         <Frame BackgroundColor="#00ACAC" Margin="20,5,20,0" CornerRadius="10" Padding="15">
-                            <StackLayout>
+                            <StackLayout >
                                 <Label Text="Asisten Sopir" TextColor="White"></Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Binding AssDriverData.Photo}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
-                                    <StackLayout Padding="10,0,0,0">
-                                        <Label Text="{Binding Model.Truck.AssdriverName}"></Label>
-                                        <Label Text="{Binding Model.Truck.AssdriverIDCard.Number}"></Label>
-                                        <Label Text="{Binding Model.Truck.AssdriverIDCard.Number}"></Label>
-                                        <Label Text="{Binding Model.Truck.AssdriverLicence.Berlaku}"></Label>
-                                        <Label Text="{Binding Model.Truck.AssdriverLicence.Hingga}"></Label>
+                                <StackLayout Orientation="Horizontal" >
+                                    <StackLayout>
+                                        <Image Source="{Binding AssDriverData.Photo}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                    </StackLayout>
+                                    <StackLayout Padding="10,0,0,0" HorizontalOptions="StartAndExpand">
+                                        <Label Text="Nama" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.AssdriverName}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="KTP" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.AssdriverIDCard.Number}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="SIM" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.AssdriverLicense.Number}" TextColor="White"></Label>
+
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="SIM Berlaku" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label TextColor="White">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding  Model.Truck.AssdriverLicense.Berlaku, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                    <Span Text=" - "></Span>
+                                                    <Span Text="{Binding  Model.Truck.AssdriverLicense.Hingga, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
                         <Frame BackgroundColor="#00ACAC" Margin="20,5,20,0" CornerRadius="10" Padding="15">
-                            <StackLayout>
+                            <StackLayout >
                                 <Label Text="STNK" TextColor="White"></Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout Padding="10,0,0,0">
-                                        <Label Text="{Binding Model.Truck.VehicleRegistration.Number}"></Label>
-                                        <Label Text="{Binding Model.Truck.VehicleRegistration.Berlaku}"></Label>
-                                        <Label Text="{Binding Model.Truck.VehicleRegistration.Hingga}"></Label>
+                                <StackLayout Orientation="Horizontal" >
+                                    <StackLayout>
+                                        <Image Source="{Binding VehicleRegistration.Photo}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                    </StackLayout>
+                                    <StackLayout Padding="10,0,0,0" HorizontalOptions="StartAndExpand">
+                                        <Label Text="Nomor STNK" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.VehicleRegistration.Number}" TextColor="White"></Label>
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="SIM Berlaku" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label TextColor="White">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding  Model.Truck.VehicleRegistration.Berlaku, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                    <Span Text=" - "></Span>
+                                                    <Span Text="{Binding  Model.Truck.VehicleRegistration.Hingga, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
+                           
                         </Frame>
                         <Frame BackgroundColor="#00ACAC" Margin="20,5,20,0" CornerRadius="10" Padding="15">
-                            <StackLayout>
+                            <StackLayout >
                                 <Label Text="KEUR DLLAJR" TextColor="White"></Label>
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout Padding="10,0,0,0">
-                                        <Label Text="{Binding Model.Truck.KeurDLLAJR.Number}"></Label>
-                                        <Label Text="{Binding Model.Truck.KeurDLLAJR.Berlaku}"></Label>
-                                        <Label Text="{Binding Model.Truck.KeurDLLAJR.Hingga}"></Label>
+                                <StackLayout Orientation="Horizontal" >
+                                    <StackLayout>
+                                        <Image Source="{Binding VehicleRegistration.Photo}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100"/>
+                                    </StackLayout>
+                                    <StackLayout Padding="10,0,0,0" HorizontalOptions="StartAndExpand">
+                                        <Label Text="Nomor" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label Text="{Binding Model.Truck.KeurDLLAJR.Number}" TextColor="White"></Label>
+                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                        <Label Text="SIM Berlaku" TextColor="LightGray" FontSize="Micro"></Label>
+                                        <Label TextColor="White">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding  Model.Truck.KeurDLLAJR.Berlaku, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                    <Span Text=" - "></Span>
+                                                    <Span Text="{Binding  Model.Truck.KeurDLLAJR.Hingga, StringFormat='{0: dd/MM/yyyy}'}"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>

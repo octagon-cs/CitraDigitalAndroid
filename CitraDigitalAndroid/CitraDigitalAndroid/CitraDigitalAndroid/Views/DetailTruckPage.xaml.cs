@@ -35,11 +35,11 @@ namespace CitraDigitalAndroid.Views
         public DetailTruckPageViewModel(PengajuanItem item)
         {
             this.Model = item;
-/*            DriverData = GetLicense(item.Truck.DriverLicense, item.Truck.DriverName, item.Truck.DriverIDCard, item.Truck.DriverPhoto);
+            DriverData = GetLicense(item.Truck.DriverLicense, item.Truck.DriverName, item.Truck.DriverIDCard, item.Truck.DriverPhoto);
             AssDriverData = GetLicense(item.Truck.AssdriverLicense, item.Truck.AssdriverName, item.Truck.AssdriverIDCard, item.Truck.AssdriverPhoto);
             VehicleRegistrationData = GetLicense(item.Truck.VehicleRegistration, null, null, null);
             KeurDLLAJRData = GetLicense(item.Truck.KeurDLLAJR, null, null, null);
-*/            Title = "DATA TRUCK";
+            Title = "DATA TRUCK";
             NextCommand = new Command(nextAction);
         }
 
@@ -52,25 +52,27 @@ namespace CitraDigitalAndroid.Views
         }
 
 
-        /*
-                private License GetLicense(DataDocument idlicence, string name, DataDocument idCard, string photo)
+        private License GetLicense(DataDocument idlicence, string name, DataDocument idCard, string photo)
+        {
+
+            if (idCard != null)
+            {
+                var licence = new License
                 {
-                   if (idlicence == null)
-                        return new License();
+                    Name = name,
+                    NumberID = idCard.Number,
+                    Berlaku = idCard.Berlaku.Value,
+                    Hingga = idCard.Hingga.Value,
+                    Number = idCard.Number,
 
-                    var licence= new License
-                    {
-                        Name = name,
-                        NumberID = idCard.Number,
-                        Berlaku = data.Berlaku,
-                        Hingga = data.Hingga,
-                        Number = data.Number,
+                };
 
-                    };
+                licence.Photo = string.IsNullOrEmpty(photo) ? null : ImageSource.FromUri(new Uri(Helper.Url + "/" + photo));
+                return licence;
+            }
 
-                    licence.Photo = string.IsNullOrEmpty(photo)?null: ImageSource.FromUri(new Uri(Helper.Url + "/" + photo));
-                    return licence;
-                }
-            */
+            return new License();
+
+        }
     }
 }

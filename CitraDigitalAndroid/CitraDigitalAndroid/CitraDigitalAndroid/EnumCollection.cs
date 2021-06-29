@@ -9,7 +9,7 @@ namespace CitraDigitalAndroid
 
     public enum StatusPengajuan
     {
-        Baru, Proccess, Complete
+        Baru, Proccess, Complete  , Cancel=-1
     }
 
     public enum AttackStatus
