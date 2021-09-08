@@ -19,7 +19,7 @@
             </StackLayout>
             <Grid Grid.Row="1">
                 <Frame BackgroundColor="White" Margin="30" HeightRequest="100" CornerRadius="30">
-                    <StackLayout>
+                    <StackLayout Padding="20">
                         <Image Source="Logo_Pertamina.png" Margin="0,-20,0,0" HeightRequest="100"/>
                         <Entry Placeholder="Username" Text="{Binding UserName}"></Entry>
                         <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}"></Entry>
@@ -32,9 +32,12 @@
                     </StackLayout>
                 </Frame>
             </Grid>
-            <StackLayout Grid.Row="2">
-                <Entry Text="{Binding URL}" HorizontalOptions="Center" WidthRequest="200" ></Entry>
-                <Label Text="Power By Octagon Cendrawasih Solution" Margin="0,-20,0,0" HorizontalOptions="Center"></Label>
+            <StackLayout Grid.Row="2" Padding="20">
+                <Entry IsVisible="{Binding ShowUrl}" HorizontalTextAlignment="Center" Margin="10" Text="{Binding URL}" HorizontalOptions="Center" WidthRequest="200" ></Entry>
+                <Label Text="Power By Octagon Cendrawasih Solution" Margin="0,0,0,0" HorizontalOptions="Center"></Label>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding ShowUrlCommand}"/>
+                </StackLayout.GestureRecognizers>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

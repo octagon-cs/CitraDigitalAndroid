@@ -11,6 +11,8 @@ namespace CitraDigitalAndroid.Models
         public int PemeriksaanId { get; set; }
 
         public string Name { get; set; }
+        public string Kelengkapan { get; set; }
+        public string Penjelasan { get; set; }
 
         public List<HasilPemeriksaan> Items { get; set; } = new List<HasilPemeriksaan>();
 

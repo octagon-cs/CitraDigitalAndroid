@@ -19,7 +19,7 @@ namespace CitraDigitalAndroid
 
     public enum StatusPersetujuan
     {
-        Proccess, Approved, Reject
+        Proccess, Approved, Complete, Reject, Fixed, Cancel = -1
     }
 
     public enum ExpireStatus

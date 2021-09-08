@@ -15,7 +15,7 @@ namespace CitraDigitalAndroid.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GateTruckLastCheckUp : ContentPage
     {
-        public GateTruckLastCheckUp(PengajuanItem model)
+        public GateTruckLastCheckUp(TruckIncomming model)
         {
             InitializeComponent();
             BindingContext = new GateTruckLastCheckUpVieModel(model);
@@ -28,16 +28,14 @@ namespace CitraDigitalAndroid.Views
     {
         public ObservableCollection<IncommingNote> Items { get; }
 
-        private PengajuanItem _model;
 
         public TruckIncomming Model { get; }
         public Command RejectCommand { get; }
         public Command ApproveCommand { get; }
 
-        public GateTruckLastCheckUpVieModel(PengajuanItem model)
+        public GateTruckLastCheckUpVieModel(TruckIncomming model)
         {
-            _model = model;
-            Model = model.Truck.LastIncomming;
+            Model = model;
             Items = new ObservableCollection<IncommingNote>(Model.Notes);
             ApproveCommand = new Command(ApproveAction);
             RejectCommand = new Command(RejectAction);
@@ -50,7 +48,8 @@ namespace CitraDigitalAndroid.Views
         private async void ApproveAction()
         {
             var page = new DetailTruckPage();
-            page.BindingContext = new DetailTruckPageViewModel(_model);
+            var lastItem = await GateService.TruckLastChencUp(Model.TruckId);
+            page.BindingContext = new DetailTruckPageViewModel(lastItem);
             await Shell.Current.Navigation.PushAsync(page);
             await Shell.Current.Navigation.PopModalAsync();
         }

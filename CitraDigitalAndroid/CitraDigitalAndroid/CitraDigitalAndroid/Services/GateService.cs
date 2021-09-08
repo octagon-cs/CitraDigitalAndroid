@@ -11,6 +11,7 @@ namespace CitraDigitalAndroid.Services
     {
         Task<List<Truck>> Trucks();
         Task<PengajuanItem> TruckLastChencUp(int id);
+        Task<Truck> TruckHistories(int id);
         Task<TruckIncomming> Approve(int id, List<HasilPemeriksaan> list);
         Task<TruckIncomming> Reject(int id, List<HasilPemeriksaan> list);
     }
@@ -60,6 +61,31 @@ namespace CitraDigitalAndroid.Services
                 throw new SystemException(ex.Message);
             }
         }
+
+
+        public async Task<Truck> TruckHistories(int idtruck)
+        {
+            try
+            {
+                using (var client = new RestService())
+                {
+                    var response = await client.GetAsync($"{controller}/TruckHistories/{idtruck}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var resultString = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<Truck>(resultString);
+                        return result;
+                    }
+                    else
+                        throw new SystemException(await client.Error(response));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new SystemException(ex.Message);
+            }
+        }
+
 
         public async Task<TruckIncomming> Approve(int id, List<HasilPemeriksaan> hasil)
         {

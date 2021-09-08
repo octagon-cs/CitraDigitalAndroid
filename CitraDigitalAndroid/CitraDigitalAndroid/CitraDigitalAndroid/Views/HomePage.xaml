@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:localView="clr-namespace:CitraDigitalAndroid.Views"  
-              xmlns:model="clr-namespace:CitraDigitalAndroid.Models"  
+              xmlns:model="clr-namespace:CitraDigitalAndroid.Models" xmlns:local="clr-namespace:CitraDigitalAndroid"
              x:Class="CitraDigitalAndroid.Views.HomePage">
+    <ContentPage.Resources>
+        <local:IMageSourceConverter x:Key="imageSourceConverter"></local:IMageSourceConverter>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid BackgroundColor="#00ACAC">
             <Grid.RowDefinitions>
@@ -27,12 +30,12 @@
                                 <StackLayout Padding="20,10,20,5" x:DataType="model:PengajuanItem">
                                     <Frame BackgroundColor="#00ACAC" CornerRadius="10" Padding="15">
                                         <StackLayout Orientation="Horizontal">
-                                            <Image Source="mobil_truk.jpg" VerticalOptions="StartAndExpand"  WidthRequest="100"/>
+                                            <Image Source="{Binding Truck.TruckPhoto, Converter={StaticResource imageSourceConverter}}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" />
                                             <StackLayout Padding="10,0,0,0">
-                                                <Label Text="{Binding Pengajuan.Company.Name}"></Label>
-                                                <Label Text="{Binding Truck.PlateNumber}"></Label>
-                                                <Label Text="{Binding Truck.KIM.KimNumber}"></Label>
-                                                <Label Text="{Binding Truck.KIM.Expired}"></Label>
+                                                <Label TextColor="white" Text="{Binding Pengajuan.Company.Name}"></Label>
+                                                <Label TextColor="white" Text="{Binding Truck.PlateNumber}"></Label>
+                                                <Label TextColor="white" Text="{Binding Truck.KIM.KimNumber}"></Label>
+                                                <Label TextColor="white" Text="{Binding Truck.KIM.Expired}"></Label>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>

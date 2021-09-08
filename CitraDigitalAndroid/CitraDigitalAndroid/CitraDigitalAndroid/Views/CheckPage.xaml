@@ -3,8 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CitraDigitalAndroid.Views.CheckPage"
               xmlns:localView="clr-namespace:CitraDigitalAndroid.Views"  
-              xmlns:model="clr-namespace:CitraDigitalAndroid.Models"  
-             >
+              xmlns:model="clr-namespace:CitraDigitalAndroid.Models" xmlns:local="clr-namespace:CitraDigitalAndroid">
+    <ContentPage.Resources>
+        <local:IMageSourceConverter x:Key="imageSourceConverter"></local:IMageSourceConverter>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid BackgroundColor="#00ACAC">
             <Grid.RowDefinitions>
@@ -16,13 +19,13 @@
                 <Image Source="Group_174" Margin="0,20,0,0"/>
                 <Frame VerticalOptions="Start" CornerRadius="30" BackgroundColor="#F5F3F3" Margin="0,-30,0,0" />
                 <StackLayout BackgroundColor="#F5F3F3" Padding="10" Margin="0,-30,0,0">
-                    <StackLayout  Orientation="Horizontal" BackgroundColor="#00ACAC" Padding="5" >
-                        <Image Source="mobil_truk.jpg" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" />
+                    <StackLayout  Orientation="Horizontal" BackgroundColor="#00ACAC" Padding="10" >
+                        <Image Source="{Binding Model.Truck.TruckPhoto, Converter={StaticResource imageSourceConverter}}" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" />
                         <StackLayout Padding="10,0,0,0">
-                            <Label Text="{Binding Model.Pengajuan.Company.Name}"></Label>
-                            <Label Text="{Binding Model.Truck.PlateNumber}"></Label>
-                            <Label Text="{Binding Model.Truck.KIM.KimNumber}"></Label>
-                            <Label Text="{Binding Model.Truck.KIM.Expired}"></Label>
+                            <Label TextColor="White" Text="{Binding Model.Pengajuan.Company.Name}"></Label>
+                            <Label TextColor="White" Text="{Binding Model.Truck.PlateNumber}"></Label>
+                            <Label TextColor="White" Text="{Binding Model.Truck.KIM.KimNumber}"></Label>
+                            <Label TextColor="White" Text="{Binding Model.Truck.KIM.Expired}"></Label>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
@@ -42,7 +45,10 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label TextColor="White" Text="{Binding Name}"></Label>
+                                            <StackLayout>
+                                                <Label TextColor="White" FontSize="Medium" Text="{Binding Name}"></Label>
+                                                <Label TextColor="White" FontSize="Small" Text="{Binding Kelengkapan}"></Label>
+                                            </StackLayout>
                                             <CheckBox Grid.Column="1" IsEnabled="False" VerticalOptions="Start" IsChecked="{Binding Complete}" HorizontalOptions="End"/>
                                         </Grid>
                                         <Frame.GestureRecognizers>

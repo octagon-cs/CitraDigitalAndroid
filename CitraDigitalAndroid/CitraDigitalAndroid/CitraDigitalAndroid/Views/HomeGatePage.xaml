@@ -28,7 +28,7 @@
                                 <SwipeView >
                                     <SwipeView.RightItems>
                                         <SwipeItems >
-                                            <SwipeItemView>
+                                            <SwipeItemView x:DataType="model:Truck">
                                                 <StackLayout WidthRequest="100" VerticalOptions="CenterAndExpand" Padding="10">
                                                     <Button BackgroundColor="Orange" VerticalOptions="Center" Text="Info" FontAttributes="Bold"
                                                              Command="{Binding Source={RelativeSource AncestorType={x:Type localView:HomeGatePageViewModel}}, Path=InfoTapped}"		
@@ -50,20 +50,24 @@
                                                 <StackLayout Orientation="Horizontal">
                                                     <Image Source="mobil_truk.jpg" VerticalOptions="StartAndExpand"  WidthRequest="100"/>
                                                     <StackLayout Padding="10,0,0,0">
-                                                        <Label Text="{Binding Company.Name}"></Label>
-                                                        <Label Text="{Binding PlateNumber}"></Label>
-                                                        <Label Text="{Binding KIM.KimNumber}"></Label>
-                                                        <Label Text="{Binding KIM.Expired}"></Label>
+                                                        <Label Text="Perusahaan" TextColor="LightGray"  FontSize="Micro"></Label>
+                                                        <Label Text="{Binding Company.Name}" TextColor="White"></Label>
+
+                                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                                        <Label Text="No Polisi" TextColor="LightGray" FontSize="Micro"></Label>
+                                                        <Label Text="{Binding PlateNumber}" TextColor="White"></Label>
+
+                                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                                        <Label Text="Nomor KIM" TextColor="LightGray" FontSize="Micro"></Label>
+                                                        <Label Text="{Binding KIM.KimNumber}" TextColor="White"></Label>
+
+                                                        <BoxView  HeightRequest="0.3" Color="LightGray" />
+                                                        <Label Text="KIM Berlaku Hingga" TextColor="LightGray" FontSize="Micro"></Label>
+                                                        <Label Text="{Binding KIM.Expired}" TextColor="White"></Label>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </Frame>
-                                            <StackLayout.GestureRecognizers>
-                                                <TapGestureRecognizer 
-                                                NumberOfTapsRequired="1"
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type localView:HomeGatePageViewModel}}, Path=ItemTapped}"		
-                                                CommandParameter="{Binding .}">
-                                                </TapGestureRecognizer>
-                                            </StackLayout.GestureRecognizers>
+                                           
                                         </StackLayout>
                                     </Grid>
                                 </SwipeView>

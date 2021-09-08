@@ -9,12 +9,23 @@ namespace CitraDigitalAndroid.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         public Command LoginCommand { get; }
+        public Command ShowUrlCommand { get; }
+        private bool showUrl;
+
+        public bool ShowUrl
+        {
+            get { return showUrl; }
+            set { SetProperty(ref showUrl , value); }
+        }
+
+
 
         public LoginViewModel()
         {
-            this.UserName = "Approval1";
-            this.Password = "Sony@77";
-            LoginCommand = new Command(OnLoginClicked);
+           LoginCommand = new Command(OnLoginClicked);
+            ShowUrlCommand = new Command(() => {
+                ShowUrl = !ShowUrl;
+            });
         }
 
 

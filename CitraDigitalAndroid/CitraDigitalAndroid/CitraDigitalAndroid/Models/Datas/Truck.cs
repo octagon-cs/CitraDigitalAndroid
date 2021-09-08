@@ -12,6 +12,7 @@ namespace CitraDigitalAndroid.Models
         public string Merk { get; set; }
         public int CarCreated { get; set; }
         public string TruckType { get; set; }
+        public string TruckPhoto { get; set; }
         public string DriverName { get; set; }
         public DataDocument DriverIDCard { get; set; }
         public DataDocument DriverLicense { get; set; }

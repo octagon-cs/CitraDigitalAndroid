@@ -6,7 +6,7 @@
              x:Class="CitraDigitalAndroid.Views.DetailCheckPage"
              Title="Detail Pemeriksaan">
     <ContentPage.Content>
-        <Grid BackgroundColor="#00ACAC">
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="85*"/>
@@ -18,42 +18,47 @@
                        TextColor="White" Margin="5" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                 </Frame>
             </StackLayout>
-            <Frame CornerRadius="20" Grid.Row="1" HorizontalOptions="StartAndExpand" BackgroundColor="White">
-                <CollectionView ItemsSource="{Binding Group.Items}" >
+                <CollectionView Grid.Row="1" ItemsSource="{Binding Group.Items}" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Margin="15,0,15,0" >
-                                <Frame BackgroundColor="#00ACAC" CornerRadius="15">
-                                    <Label FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding ItemPemeriksaan.Kelengkapan}" />
-                                </Frame>
-                                <Label Text="Hasil" Margin="0,20,0,0"/>
-                                <StackLayout Orientation="Horizontal">
-                                    <RadioButton x:Name="baik" GroupName="{Binding ItemPemeriksaan.Kelengkapan}" 
+                        <StackLayout Padding="5">
+                            <Frame CornerRadius="20" >
+                                <StackLayout  Padding="10">
+                                    <Frame BackgroundColor="#00ACAC" CornerRadius="15">
+                                        <StackLayout>
+                                            <Label FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding ItemPemeriksaan.Kelengkapan}" />
+                                            <Label FontSize="Small" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding ItemPemeriksaan.Penjelasan}" />
+                                        </StackLayout>
+                                    </Frame>
+                                    <Label Text="Hasil" Margin="0,20,0,0"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <RadioButton  GroupName="{Binding ItemPemeriksaan.Id}" 
                                                          IsChecked="{Binding Hasil}" VerticalOptions="Center"/>
-                                    <Label Text="Baik" VerticalOptions="Center"/>
-                                    <RadioButton x:Name="tidak" GroupName="{Binding ItemPemeriksaan.Kelengkapan}" 
+                                        <Label Text="Baik" VerticalOptions="Center"/>
+                                        <RadioButton GroupName="{Binding ItemPemeriksaan.Id}" 
                                                          VerticalOptions="Center"/>
-                                    <Label Text="Tidak" VerticalOptions="Center"/>
-                                </StackLayout>
-                                <Label Text="Keterangan" Margin="0,20,0,0"/>
-                                <Editor AutoSize="TextChanges" Text="{Binding Keterangan}"/>
-                                <Label Text="Tidak Lanjut" Margin="0,20,0,0"/>
-                                <Editor AutoSize="TextChanges"  Text="{Binding TindakLanjut}"/>
-                                <Label Text="Kompensasi Hingga" Margin="0,20,0,0"/>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <local:MyDatePicker x:Name="myPick"  PropertyChanged="MyDatePicker_PropertyChanged"  Date="{Binding CompensationDeadline, Mode=TwoWay}" />
-                                    <Button Grid.Column="1" Command="{Binding  Source={RelativeSource AncestorType={x:Type localView:DetailCheckPageViewModel}}, Path=ClearCompesationCommand}" 
+                                        <Label Text="Tidak" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                    <Label Text="Keterangan" Margin="0,20,0,0"/>
+                                    <Editor AutoSize="TextChanges" Text="{Binding Keterangan}"/>
+                                    <Label Text="Tidak Lanjut" Margin="0,20,0,0"/>
+                                    <Editor AutoSize="TextChanges"  Text="{Binding TindakLanjut}"/>
+                                    <Label Text="Kompensasi Hingga" Margin="0,20,0,0"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <local:MyDatePicker x:Name="myPick"  PropertyChanged="MyDatePicker_PropertyChanged"  Date="{Binding CompensationDeadline, Mode=TwoWay}" />
+                                        <Button Grid.Column="1" Command="{Binding  Source={RelativeSource AncestorType={x:Type localView:DetailCheckPageViewModel}}, Path=ClearCompesationCommand}" 
                                                     CommandParameter="{Binding Source={x:Reference myPick}}" Text="Clear" HorizontalOptions="End"></Button>
-                                </Grid>
-                            </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </Frame>
             <StackLayout Margin="5,3" Grid.Row="2" Padding="0" >
                  <Button  Command="{Binding BackCommand}" CornerRadius="5" Text="OK"  BackgroundColor="YellowGreen" ></Button>
             </StackLayout>

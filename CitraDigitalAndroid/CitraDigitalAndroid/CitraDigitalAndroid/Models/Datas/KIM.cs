@@ -15,6 +15,22 @@ namespace CitraDigitalAndroid.Models
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public ExpireStatus Expired { get; set; }
+        public string Expired
+        {
+            get
+            {
+                var result= AutoSystem.Expired(EndDate);
+
+                switch (result)
+                {
+                    case ExpireStatus.WillExpire:
+                        return $"Akan Segera Mati";
+                    case ExpireStatus.Expire:
+                        return $"Tidak Berlaku";
+                    default:
+                        return EndDate.ToString("dd-MM-yyyy");
+                }
+            }
+        }
     }
 }

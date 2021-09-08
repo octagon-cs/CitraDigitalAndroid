@@ -40,6 +40,7 @@ namespace CitraDigitalAndroid.Views
             ClearCompesationCommand = new Command(ClearCompetationDate);
         }
 
+        [Obsolete]
         private async void ClearCompetationDate(object obj)
         {
             await Task.Delay(200);
@@ -47,8 +48,10 @@ namespace CitraDigitalAndroid.Views
             if (picker != null)
             {
                  var hasil = picker.BindingContext as HasilPemeriksaan;
+                hasil.Hasil = false;
+                hasil.Keterangan = "";
+                hasil.TindakLanjut = "";
                 hasil.CompensationDeadline = null;
-                picker.NullableDate = null;
             }
         }
 

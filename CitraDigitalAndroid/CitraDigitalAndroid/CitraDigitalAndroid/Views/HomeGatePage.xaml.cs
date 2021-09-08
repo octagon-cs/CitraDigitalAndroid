@@ -48,20 +48,20 @@ namespace CitraDigitalAndroid.Views
                 if (truck == null)
                     return;
 
-                var lastItem = await GateService.TruckLastChencUp(truck.Id);
-                if (lastItem == null)
-                    throw new SystemException("Truck Belum Diajukan Untuk Dibuatkan KIM.");
-
-                if (lastItem.Truck.KIM == null)
-                {
+                if (truck.KIM == null)
                     throw new SystemException("Truck Belum Memiliki KIM.");
-                }
 
-                var lastIncoming = lastItem.Truck.LastIncomming;
+               
+                
+                var lastHistories = await GateService.TruckHistories(truck.Id);
+                
+                var lastIncoming = lastHistories.LastIncomming;
+                
                 if (lastIncoming != null && lastIncoming.Notes != null &&
                     lastIncoming.Notes.Count > 0)
                 {
-                    var pageInfo = new GateTruckLastCheckUp(lastItem);
+                    lastIncoming.TruckId = truck.Id;
+                    var pageInfo = new GateTruckLastCheckUp(lastIncoming);
                     await Shell.Current.Navigation.PushModalAsync(pageInfo);
                 }else
                 {
@@ -123,19 +123,16 @@ namespace CitraDigitalAndroid.Views
                     return;
 
                 
-
-                var lastItem = await GateService.TruckLastChencUp(truck.Id);
-                if (lastItem==null)
-                    throw new SystemException("Truck Belum Diajukan Untuk Dibuatkan KIM.");
-
-
-                if (lastItem.Truck.KIM == null)
+                if (truck.KIM == null)
                 {
-                    throw new SystemException("Truck Belum Memiliki KIM.");
+                    throw new SystemException("Truck Belum memilik KIM.");
                 }
 
-              
-                    var page = new DetailTruckPage();
+                var lastItem = await GateService.TruckLastChencUp(truck.Id);
+                if (lastItem == null)
+                    throw new SystemException("Truck Belum Diajukan Untuk Dibuatkan KIM.");
+
+                var page = new DetailTruckPage();
                     page.BindingContext = new DetailTruckPageViewModel(lastItem);
                     await Shell.Current.Navigation.PushAsync(page);
 

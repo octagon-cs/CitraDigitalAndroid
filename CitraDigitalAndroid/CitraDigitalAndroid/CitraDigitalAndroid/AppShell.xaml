@@ -7,7 +7,7 @@
 
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <StackLayout  HeightRequest="150">
+            <StackLayout  BackgroundColor="{StaticResource Primary}" HeightRequest="150">
                 <Image Source="Logo_Pertamina.png" Margin="10" Aspect="AspectFill" VerticalOptions="CenterAndExpand" WidthRequest="75" HeightRequest="100"/>
             </StackLayout>
         </DataTemplate>
@@ -74,10 +74,10 @@
     <FlyoutItem Title="Home" Icon="tab_feed.png">
         <ShellContent  Route="Home" ContentTemplate="{DataTemplate local:HomePage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="About" Icon="home.png">
+    <FlyoutItem Title="About" Icon="tab_about.png">
         <ShellContent  ContentTemplate="{DataTemplate local:AboutPage}"/>
     </FlyoutItem>
-    <MenuItem  Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked"/>
+    <MenuItem IconImageSource="logout.png" Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked"/>
     <ShellContent Route="LoginPage" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:LoginPage}" />
 
 </Shell>

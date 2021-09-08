@@ -67,6 +67,13 @@ namespace CitraDigitalAndroid.Views
                 }
                 if (result != null)
                 {
+                    MessagingCenter.Send(new MessagingCenterAlert
+                    {
+                        Title = "Info",
+                        Message = "Berhasil !",
+                        Cancel = "OK"
+                    }, "message");
+                    IsBusy = false;
                     MessagingCenter.Send(Model, "approve");
                     await Shell.Current.GoToAsync($"//Home");
                 }
@@ -104,6 +111,12 @@ namespace CitraDigitalAndroid.Views
 
                 if (result != null)
                 {
+                    MessagingCenter.Send(new MessagingCenterAlert
+                    {
+                        Title = "Info",
+                        Message = "Berhasil !",
+                        Cancel = "OK"
+                    }, "message");
                     MessagingCenter.Send(Model, "approve");
                     await Shell.Current.GoToAsync($"//Home");
                 }
@@ -150,7 +163,7 @@ namespace CitraDigitalAndroid.Views
                 }
                 if(items!=null && items.Count > 0)
                 {
-                    var groups = items.GroupBy(x => x.ItemPemeriksaanId);
+                    var groups = items.Where(x=>x.ItemPemeriksaan.JenisPemeriksaan== JenisPemeriksaan.Kelengkapan).GroupBy(x => x.ItemPemeriksaan.Pemeriksaan.Id);
                     foreach (var group in groups)
                     {
                         var data = group.FirstOrDefault();
